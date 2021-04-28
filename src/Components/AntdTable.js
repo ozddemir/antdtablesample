@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Table, Spin } from 'antd';
 import 'antd/dist/antd.css';
 export const AntdTable = () => {
-    //Tabla için kullanılacak ürünlerin serverdan çekilmesi biraz zaman alır. Bu yüzden loading usestate ile dataların gelmesini beklenir
+    //Tabla için kullanılacak ürünlerin serverdan çekilmesi biraz zaman alır. Bu yüzden loading usestate ile dataların gelmesi beklenir
     const [loading, setLoading] = useState(true);
 
     // Api den çekeceğimiz ürünleri atamasını yapacağımız null bir usestate oluşturduk
@@ -24,19 +24,19 @@ export const AntdTable = () => {
         return
     }
 
-    //tablo için filter methodu
+    //tablo için filter fonksiyonu
     const antdtablefilter = (value, record) => {
         const res = record.title.includes(value);
         return res;
     }
 
-    // fakestoreapi'den tabloda kullanılacak dataların çekilmesi için kullanılan method.
+    // fakestoreapi'den tabloda kullanılacak dataların çekilmesi için kullanılacak olan fonksiyon.
     const getdata = async () => {
         fetch('https://fakestoreapi.com/products')
             .then(res => res.json())
             .then(json => {
                 //console.log(json)
-                //Api den gelen ürün bilgisi setProducts ile products usestate ine atanır
+                //Api den gelen ürün bilgisi setProducts ile products usestate'ine atanır
                 setProducts(json)
                 //Sayfa, api den data gelene kadar loading ekranında kalır. data alındıktan sonra loading usestate false olur ve table kullanıcıya gösterilir
                 setLoading(false)
@@ -48,7 +48,7 @@ export const AntdTable = () => {
         getdata();
     }, [])
 
-    //Tablo colonlarının başlık ve içeriği. dataIndex değişkeninde belirlenen isim ile gelen json datada ki değişken isimleri ile aynı olmasına dikkat edilmesi gerekir.
+    //Tablo kolonlarının başlık ve içeriği. dataIndex değişkeninde belirlenen isim ile gelen json datada ki değişken isimleri ile aynı olmasına dikkat edilmesi gerekir.
     const columns = [
 
         {
@@ -60,13 +60,14 @@ export const AntdTable = () => {
         {
             title: 'Title',
             dataIndex: 'title',
-            render: title => <h3>{title}</h3>,
             filters: [
                 { text: 'Jacket', value: 'Jacket' },
-              
+
                 { text: 'SSD', value: 'SSD' },
-              ],
-              onFilter: (value, record) => antdtablefilter(value,record),
+            ],
+            onFilter: (value, record) => antdtablefilter(value, record),
+            render: title => <h3>{title}</h3>,
+
         },
         {
             title: 'price',
@@ -79,7 +80,7 @@ export const AntdTable = () => {
             dataIndex: 'description',
             width: "30%",
             render: description => <>{description}</>,
-          
+
         },
         {
             dataIndex: 'image',

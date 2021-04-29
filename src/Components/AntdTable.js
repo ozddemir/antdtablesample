@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Table, Spin } from 'antd';
 import 'antd/dist/antd.css';
 export const AntdTable = () => {
-    //Tabla için kullanılacak ürünlerin serverdan çekilmesi biraz zaman alır. Bu yüzden loading usestate ile dataların gelmesi beklenir
+    //Tablo için kullanılacak ürünlerin serverdan çekilmesi biraz zaman alır. Bu yüzden loading usestate ile dataların gelmesi beklenir
     const [loading, setLoading] = useState(true);
 
     // Api den çekeceğimiz ürünleri atamasını yapacağımız null bir usestate oluşturduk

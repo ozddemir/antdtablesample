@@ -78,9 +78,8 @@ export const AntdTable = () => {
         {
             title: 'Description',
             dataIndex: 'description',
-            width: "30%",
             render: description => <>{description}</>,
-
+            width: "30%",
         },
         {
             dataIndex: 'image',
@@ -88,8 +87,6 @@ export const AntdTable = () => {
         },
 
     ];
-
-
     return (
         <>
             {/* loading usestate false olana kadar tablo kullanıcıya gösterilmiyor */}
